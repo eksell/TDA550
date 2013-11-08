@@ -1,4 +1,4 @@
-package orig_lab1;
+package lab1_original;
 
 /**
  * Thrown by GameModel.doCommand at game termination. The exception contains

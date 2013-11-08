@@ -1,4 +1,4 @@
-package orig_lab1;
+package lab1_original;
 
 /**
  * Factory interface for available games.

@@ -1,4 +1,4 @@
-package orig_lab1;
+package lab1_original;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
