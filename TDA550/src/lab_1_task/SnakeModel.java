@@ -41,7 +41,7 @@ public class SnakeModel extends GameModel {
 		}
 	}
 
-	private static final int COIN_START_AMOUNT = 20;
+	private static final int COIN_START_AMOUNT = 1;
 
 	/*
 	 * The following GameTile objects are used only
@@ -51,7 +51,7 @@ public class SnakeModel extends GameModel {
 	 * conjunction with the get/setGameboardState()
 	 * methods.
 	 */
-
+	
 	/** Graphical representation of a coin. */
 	private static final GameTile COIN_TILE = new RoundTile(new Color(255, 215,
 			0),
@@ -66,6 +66,9 @@ public class SnakeModel extends GameModel {
 
 	/** A list containing the positions of all coins. */
 	private final List<Position> coins = new ArrayList<Position>();
+	
+	private final List<Position> snake = new ArrayList<Position>(); //Idea !!!!!!!!!
+	
 	/*
 	 * The declaration and object creation above uses the new language feature
 	 * 'generic types'. It can be declared in the old way like this:
@@ -111,6 +114,7 @@ public class SnakeModel extends GameModel {
 	 * Insert another coin into the gameboard.
 	 */
 	private void addCoin() {
+		this.snake.add(collectorPos); // Idea!!!!
 		Position newCoinPos;
 		Dimension size = getGameboardSize();
 		// Loop until a blank position is found and ...
@@ -163,9 +167,12 @@ public class SnakeModel extends GameModel {
 	 * Get next position of the collector.
 	 */
 	private Position getNextCollectorPos() {
-		return new Position(
+		
+		Position nextPos = new Position(
 				this.collectorPos.getX() + this.direction.getXDelta(),
-				this.collectorPos.getY() + this.direction.getYDelta());
+				this.collectorPos.getY() + this.direction.getYDelta());; // Makes nextPos available to add to snake...  
+		
+		return nextPos;
 	}
 
 	/**
@@ -219,5 +226,11 @@ public class SnakeModel extends GameModel {
 		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
 				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
 	}
+	
+/*	private boolean selfCollide(Position pos) {							// Add a selfcollission function to later be used in Update func. Loop through the snake list
+		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
+				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+	}
+*/
 
 }

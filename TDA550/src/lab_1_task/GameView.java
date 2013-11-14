@@ -33,7 +33,7 @@ public class GameView extends JComponent {
 	 * Creates a view where each GameObject has side length 40 pixels..
 	 */
 	public GameView() {
-		this(40);
+		this(60); // 40->60, personal pref.
 	}
 
 	/**
