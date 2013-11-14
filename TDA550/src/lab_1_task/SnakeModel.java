@@ -200,11 +200,13 @@ public class SnakeModel extends GameModel {
 		// Remove the coin at the new collector position (if any)
 		if (this.coins.remove(this.collectorPos)) {
 			this.score++;
+			//The snake ate the last one, we need more:
+			addCoin();
 		}
 
 		// Check if all coins are found
 		if (this.coins.isEmpty()) {
-			throw new GameOverException(this.score + 5);
+			throw new GameOverException(this.score);
 		}
 
 		
@@ -236,10 +238,9 @@ public class SnakeModel extends GameModel {
 	 * @return <code>false</code> if the position is not the snake, <code>true</code> otherwise.
 	 */
 	
-/*	private boolean selfCollide(Position pos) {							// Add a selfcollission function to later be used in Update func. Loop through the snake list
-		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
-				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+	private boolean isCannibal(Position pos) {		//EXPAND
+		boolean self = false;
+		return self;
 	}
-*/
 
 }
