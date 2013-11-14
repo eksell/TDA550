@@ -67,7 +67,8 @@ public class SnakeModel extends GameModel {
 	/** A list containing the positions of all coins. */
 	private final List<Position> coins = new ArrayList<Position>();
 	
-	private final List<Position> snake = new ArrayList<Position>(); //Idea !!!!!!!!!
+	/** A list containing the positions of the snake parts. */
+	private final List<Position> snake = new ArrayList<Position>();
 	
 	/*
 	 * The declaration and object creation above uses the new language feature
@@ -78,7 +79,7 @@ public class SnakeModel extends GameModel {
 	 * to be used in the List
 	 */
 
-	/** The position of the collector. */
+//	/** The position of the collector. */
 	private Position collectorPos;
 
 	/** The direction of the collector. */
@@ -103,6 +104,7 @@ public class SnakeModel extends GameModel {
 		// Insert the collector in the middle of the gameboard.
 		this.collectorPos = new Position(size.width / 2, size.height / 2);
 		setGameboardState(this.collectorPos, COLLECTOR_TILE);
+		snake.add(this.collectorPos);
 
 		// Insert coins into the gameboard.
 		for (int i = 0; i < COIN_START_AMOUNT; i++) {
@@ -114,7 +116,6 @@ public class SnakeModel extends GameModel {
 	 * Insert another coin into the gameboard.
 	 */
 	private void addCoin() {
-		this.snake.add(collectorPos); // Idea!!!!
 		Position newCoinPos;
 		Dimension size = getGameboardSize();
 		// Loop until a blank position is found and ...
@@ -187,19 +188,28 @@ public class SnakeModel extends GameModel {
 		updateDirection(lastKey);
 
 		// Erase the previous position.
-		setGameboardState(this.collectorPos, BLANK_TILE);
+		setGameboardState(snake.get(snake.size()-1), BLANK_TILE);
 		// Change collector position.
+		snake.remove(snake.size()-1);
 		this.collectorPos = getNextCollectorPos();
+		snake.add(this.collectorPos);
 
 		if (isOutOfBounds(this.collectorPos)) {
 			throw new GameOverException(this.score);
 		}
 		// Draw collector at new position.
-		setGameboardState(this.collectorPos, COLLECTOR_TILE);
+		int tail = snake.size()-1;
+		while(tail >= 0){
+			setGameboardState(this.snake.get(tail), COLLECTOR_TILE);
+			tail--;
+			System.out.println("Printed: "+ tail);
+		}
 
 		// Remove the coin at the new collector position (if any)
 		if (this.coins.remove(this.collectorPos)) {
 			this.score++;
+			//Snake ate a coin and grew
+			growSnake();
 			//The snake ate the last one, we need more:
 			addCoin();
 		}
@@ -220,6 +230,11 @@ public class SnakeModel extends GameModel {
 		addCoin();
 		 */ 
 
+	}
+	
+	public void growSnake(){
+		this.snake.add(collectorPos); // Idea!!!!
+		System.out.println("Size: " + snake.size());
 	}
 
 	/**
