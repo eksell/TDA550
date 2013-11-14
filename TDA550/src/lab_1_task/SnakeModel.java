@@ -207,6 +207,8 @@ public class SnakeModel extends GameModel {
 			throw new GameOverException(this.score + 5);
 		}
 
+		
+		/*		OLD CODE
 		// Remove one of the coins
 		Position oldCoinPos = this.coins.get(0);
 		this.coins.remove(0);
@@ -214,6 +216,7 @@ public class SnakeModel extends GameModel {
 
 		// Add a new coin (simulating moving one coin)
 		addCoin();
+		 */ 
 
 	}
 
@@ -226,6 +229,12 @@ public class SnakeModel extends GameModel {
 		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
 				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
 	}
+	
+	/**
+	 * 
+	 * @param pos The position to test.
+	 * @return <code>false</code> if the position is not the snake, <code>true</code> otherwise.
+	 */
 	
 /*	private boolean selfCollide(Position pos) {							// Add a selfcollission function to later be used in Update func. Loop through the snake list
 		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
