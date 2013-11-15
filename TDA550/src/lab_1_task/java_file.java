@@ -12,7 +12,7 @@ public class java_file {
 	 * 
 	 * Nästa steg:
 	 *
-	 *- Fixa så att kroppen följer huvudet
+	 *- The snake doesnt continue after the first coin is eaten
 	 *
 	 */
 }

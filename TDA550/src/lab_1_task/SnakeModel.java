@@ -176,12 +176,14 @@ public class SnakeModel extends GameModel {
 
 		// Change collector position.
 		Position nextStep = getNextCollectorPos();
-		
+
 		if (isOutOfBounds(nextStep)) {
 			throw new GameOverException(this.score);
 		}
 		
+		
 		snakeBodyUpdate(nextStep);
+
 		// Draw collector at new position.
 		//		int tail = snake.size()-1;
 		//		while(tail >= 0){
@@ -197,52 +199,42 @@ public class SnakeModel extends GameModel {
 			growSnake();
 			//The snake ate the last one, we need more:
 			addCoin();
-			
+
 			//CHECK System.out.println("Amount of coins: " + this.coins.size());
-		}
+		} 
 
 		// Check if all coins are found
 		if (this.coins.isEmpty()) {
 			System.out.println("No coins");
 			throw new GameOverException(this.score);
 		}
-
-
-		/*		OLD CODE
-		// Remove one of the coins
-		Position oldCoinPos = this.coins.get(0);
-		this.coins.remove(0);
-		setGameboardState(oldCoinPos, BLANK_TILE);
-
-		// Add a new coin (simulating moving one coin)
-		addCoin();
-		 */ 
+		
+		
 
 	}
 
 	/** Returns current position of the snake head*/
 	public Position getHead(){ return this.snake.get(0);}
 
-	/** Returns current position of the snaketail*/
+	/** Returns current position of the snake tail*/
 	public Position getTail(){ return this.snake.get(snake.size()-1);}
 
 	public void growSnake(){
 		this.snake.add(getHead()); // Idea!!!!
 		System.out.println("Size: " + snake.size());
-		//snakeBodyUpdate(getNextCollectorPos());
 	}
 
 	/**Takes next position and and updates the snakes body parts*/
 	public void snakeBodyUpdate(Position pos){	
-		
+
 		// Erase the previous position
 		setGameboardState(getTail(), BLANK_TILE);
 		snake.remove(getTail());
-		
+
 		//Add the next position
 		snake.add(pos);
 		setGameboardState(getHead(),SNAKE_TILE);
-		
+
 	}
 
 	/**
