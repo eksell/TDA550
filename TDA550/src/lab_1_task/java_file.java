@@ -10,9 +10,10 @@ public class java_file {
 	
 	/** 
 	 * 
-	 * Nästa steg:
+	 * Next:
 	 *
-	 *- The snake doesnt continue after the first coin is eaten
+	 *- The snake grows insanely, there is a deletion of the body but it somehow doesn't go away...
+	 *- > Looks like its deleting 1-ahead and that the body you se is the leftovers... 
 	 *
 	 */
 }

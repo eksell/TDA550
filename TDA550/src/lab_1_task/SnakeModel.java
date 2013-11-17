@@ -91,6 +91,7 @@ public class SnakeModel extends GameModel {
 
 		// Insert the collector in the middle of the gameboard.
 		this.snake.add(new Position(size.width / 2, size.height / 2));
+		System.out.println("1.Snake size " + snake.size());
 		setGameboardState(getHead(), SNAKE_TILE);
 
 		// Insert coins into the gameboard.
@@ -152,9 +153,21 @@ public class SnakeModel extends GameModel {
 	}
 
 	/**
+	 * Get position of the collector.
+	 */
+	private Position getPos() {
+
+		Position thisPos = new Position(
+				getHead().getX(),
+				getHead().getY());
+
+		return thisPos;
+	}
+	
+	/**
 	 * Get next position of the collector.
 	 */
-	private Position getNextCollectorPos() {
+	private Position getNextPos() {
 
 		Position nextPos = new Position(
 				getHead().getX() + this.direction.getXDelta(),
@@ -173,17 +186,13 @@ public class SnakeModel extends GameModel {
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
 		updateDirection(lastKey);
+		
+		this.snake.set(0, getNextPos());
 
-		// Change collector position.
-		Position nextStep = getNextCollectorPos();
-
-		if (isOutOfBounds(nextStep)) {
+		if (isOutOfBounds(getNextPos())) {
 			throw new GameOverException(this.score);
 		}
 		
-		
-		snakeBodyUpdate(nextStep);
-
 		// Draw collector at new position.
 		//		int tail = snake.size()-1;
 		//		while(tail >= 0){
@@ -193,48 +202,44 @@ public class SnakeModel extends GameModel {
 		//		}
 
 		// Remove the coin at the new collector position (if any)
+		
 		if (this.coins.remove(getHead())) {
 			this.score++;
 			//Snake ate a coin and grew
-			growSnake();
+			growSnake(getPos());
 			//The snake ate the last one, we need more:
 			addCoin();
-
-			//CHECK System.out.println("Amount of coins: " + this.coins.size());
-		} 
-
+		}
+	
 		// Check if all coins are found
 		if (this.coins.isEmpty()) {
 			System.out.println("No coins");
 			throw new GameOverException(this.score);
 		}
-		
-		
 
+		//Take a step forward
+		System.out.println("Get head: " + getHead().getX()+ ", "+ getHead().getY());
+		this.snake.add(getNextPos());
+		//System.out.println("Get head: " + getHead().getX()+ ", "+ getHead().getY());
+		setGameboardState(getHead(),SNAKE_TILE);
+		System.out.println("Forward " + snake.size());
+
+		//Collect your tail
+		System.out.println("Get tail: " + getTail().getX()+ ", "+ getTail().getY());
+		setGameboardState(getTail(), BLANK_TILE);
+		this.snake.remove(getTail());
+		System.out.println("Get tail " + snake.size());
 	}
-
+	
 	/** Returns current position of the snake head*/
-	public Position getHead(){ return this.snake.get(0);}
+	public Position getHead(){ 	return this.snake.get(0);}
 
 	/** Returns current position of the snake tail*/
 	public Position getTail(){ return this.snake.get(snake.size()-1);}
 
-	public void growSnake(){
-		this.snake.add(getHead()); // Idea!!!!
+	public void growSnake(Position pos){
+		this.snake.add(pos); // Idea!!!!
 		System.out.println("Size: " + snake.size());
-	}
-
-	/**Takes next position and and updates the snakes body parts*/
-	public void snakeBodyUpdate(Position pos){	
-
-		// Erase the previous position
-		setGameboardState(getTail(), BLANK_TILE);
-		snake.remove(getTail());
-
-		//Add the next position
-		snake.add(pos);
-		setGameboardState(getHead(),SNAKE_TILE);
-
 	}
 
 	/**
