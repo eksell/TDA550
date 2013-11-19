@@ -91,6 +91,7 @@ public class SnakeModel extends GameModel {
 
 		// Insert the collector in the middle of the gameboard.
 		this.snake.add(new Position(size.width / 2, size.height / 2));
+		this.snake.add(new Position(size.width / 2, (size.height / 2)+1));
 		System.out.println("1.Snake size " + snake.size());
 		setGameboardState(getHead(), SNAKE_TILE);
 
@@ -163,7 +164,7 @@ public class SnakeModel extends GameModel {
 
 		return thisPos;
 	}
-	
+
 	/**
 	 * Get next position of the collector.
 	 */
@@ -186,69 +187,65 @@ public class SnakeModel extends GameModel {
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
 		updateDirection(lastKey);
-		
+
 		this.snake.set(0, getNextPos());
 
-		if (isOutOfBounds(getNextPos())) {
+		if (collide(getNextPos())) {
 			throw new GameOverException(this.score);
 		}
-		
-		// Draw collector at new position.
-		//		int tail = snake.size()-1;
-		//		while(tail >= 0){
-		//			setGameboardState(this.snake.get(tail), COLLECTOR_TILE);
-		//			tail--;
-		//			System.out.println("Printed: "+ tail);
-		//		}
 
-		// Remove the coin at the new collector position (if any)
-		
+		/**Snake eat a coin*/
 		if (this.coins.remove(getHead())) {
 			this.score++;
-			//Snake ate a coin and grew
 			growSnake(getPos());
-			//The snake ate the last one, we need more:
 			addCoin();
 		}
-	
-		// Check if all coins are found
-		if (this.coins.isEmpty()) {
-			System.out.println("No coins");
-			throw new GameOverException(this.score);
-		}
 
-		//Take a step forward
-		System.out.println("Get head: " + getHead().getX()+ ", "+ getHead().getY());
-		this.snake.add(getNextPos());
-		//System.out.println("Get head: " + getHead().getX()+ ", "+ getHead().getY());
-		setGameboardState(getHead(),SNAKE_TILE);
-		System.out.println("Forward " + snake.size());
-
-		//Collect your tail
-		System.out.println("Get tail: " + getTail().getX()+ ", "+ getTail().getY());
-		setGameboardState(getTail(), BLANK_TILE);
-		this.snake.remove(getTail());
-		System.out.println("Get tail " + snake.size());
+		snakeBodyUpdate();
 	}
-	
+
 	/** Returns current position of the snake head*/
-	public Position getHead(){ 	return this.snake.get(0);}
+	public Position getHead(){return this.snake.get(snake.size()-1);}
 
 	/** Returns current position of the snake tail*/
-	public Position getTail(){ return this.snake.get(snake.size()-1);}
+	public Position getTail(){return this.snake.get(0);}
 
 	public void growSnake(Position pos){
-		this.snake.add(pos); // Idea!!!!
-		System.out.println("Size: " + snake.size());
+		this.snake.add(pos);
+		//System.out.println("Size: " + snake.size());
+	}
+
+	public void snakeBodyUpdate(){
+		/**Collect your tail*/
+		this.snake.remove(getTail());
+		setGameboardState(getTail(), BLANK_TILE);
+
+		/**Take a step forward*/
+		this.snake.add(getNextPos());
+		setGameboardState(getHead(),SNAKE_TILE);
+
+		//System.out.println("Get tail: " + getTail().getX()+ ", "+ getTail().getY());
+		//System.out.println("Size: " + snake.size());
 	}
 
 	/**
 	 * @param pos The position to test.
 	 * @return <code>false</code> if the position is outside the playing field, <code>true</code> otherwise.
 	 */
-	private boolean isOutOfBounds(Position pos) {
-		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
-				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+	private boolean collide(Position pos) {
+		boolean collision = false;
+		if( 	pos.getX() < 0 || 
+				pos.getX() >= getGameboardSize().width|| 
+				pos.getY() < 0 || 
+				pos.getY() >= getGameboardSize().height){
+			collision = true;
+			System.out.println("There has been a collision with a wall!");
+		}
+		else if(snake.indexOf(pos)!=snake.lastIndexOf(pos)){
+			collision = true;
+			System.out.println("You've tried to eat yourself!");
+		}
+		return collision;			
 	}
 
 	/**
