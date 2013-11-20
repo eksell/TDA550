@@ -6,7 +6,9 @@ import java.awt.Graphics;
 public abstract class Point implements GeometricalForm{
 
 	int x,y,perimiter,width,height,area;
-	Color color = null; 
+	Color color = null;
+	
+	//public Point(){}; //Need this?
 
 	public Point(int x, int y, Color c) throws IllegalPositionException{
 		this.color = c;
@@ -15,7 +17,9 @@ public abstract class Point implements GeometricalForm{
 	}
 
 	public Point(GeometricalForm f, Color c){
-		//EXTEND	
+		this.color = c;
+		this.x = f.getX();
+		this.y = f.getY();
 	}
 
 	public Color getColor(){	return color;}
