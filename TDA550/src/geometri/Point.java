@@ -41,4 +41,6 @@ public abstract class Point implements GeometricalForm{
 		//EXTEND
 	}
 	
+	public int compareTo(GeometricalForm f){return this.getArea() - f.getArea();}
+	
 }
