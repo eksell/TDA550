@@ -9,43 +9,35 @@ public class Line extends Point {
 	
 	public Line(int x1, int y1, int x2, int y2, Color c) throws IllegalPositionException{
 		super(x1, y1, c);
-		this.color = c;
-		this.x = x1;
-		this.y = y1;
 		this.x2 = x2;
 		this.y2 = y2;
 	}
 	
-	public Line(GeometricalForm f1, GeometricalForm f2, Color c)
-
-	
-	public Point(int x, int y, Color c) throws IllegalPositionException{
-		this.color = c;
-		this.x = x;
-		this.y = y;
-	}
-
-	public Point(GeometricalForm f, Color c){
-		//EXTEND	
+	public Line(GeometricalForm f1, GeometricalForm f2, Color c) throws IllegalPositionException{
+		super(f1.getX(), f1.getY(), c);
+		this.x2 = f2.getX();
+		this.y2 = f2.getY();
 	}
 
 	public Color getColor(){	return color;}
-	public int getX(){			return this.x;}
-	public int getY(){			return this.y;}
+	public int getX(){			return this.x;}//Vad händer med return lines X...? 
+	public int getY(){			return this.y;}//-----------::-------------------
 	
 	public int getArea(){		return 0;}
 	public int getHeight(){		return 0;}
 	public int getWidth(){		return 0;};
 	public int getPerimeter(){	return 0;}
 	
-	public void move(int dx, int dy){ 
-		this.x = this.x + dx;
-		this.y = this.y + dy;
+	public void move(int dx, int dy,int dx2, int dy2){
+		super.move(dx,dy);
+		this.x2 = this.x2 + dx2;
+		this.y2 = this.y2 + dy2;
 	}
 	
-	public void place(int x, int y){ 
-		this.x = x;
-		this.y = y;
+	public void place(int x, int y, int x2, int y2){ 
+		super.place(x, y);
+		this.x2 = x2;
+		this.y2 = y2;
 	}
 
 	public void fill(Graphics g){
