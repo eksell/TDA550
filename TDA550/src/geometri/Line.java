@@ -18,10 +18,21 @@ public class Line extends Point {
 		this.x2 = f2.getX();
 		this.y2 = f2.getY();
 	}
+	
+	
 
 	public Color getColor(){	return color;}
-	public int getX(){			return this.x;}//Vad händer med return lines X...? 
-	public int getY(){			return this.y;}//-----------::-------------------
+	public int getX(int pos){
+		if(pos == 1)return this.x;
+		if(pos == 2)return this.x2;
+		else return 0;
+	}
+
+	public int getY(int pos){
+		if(pos == 1)return this.y;
+		if(pos == 2)return this.y2;
+		else return 0;
+	}
 	
 	public int getArea(){		return 0;}
 	public int getHeight(){		return 0;}
