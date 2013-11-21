@@ -3,48 +3,41 @@ package geometri;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Line extends Point {
-	
+public class Line extends Point implements GeometricalForm{
+
 	int x2,y2;
-	
+
 	public Line(int x1, int y1, int x2, int y2, Color c) throws IllegalPositionException{
 		super(x1, y1, c);
-		this.x2 = x2;
-		this.y2 = y2;
+		setValues(x2, y2);
 	}
-	
+
 	public Line(GeometricalForm f1, GeometricalForm f2, Color c) throws IllegalPositionException{
 		super(f1.getX(), f1.getY(), c);
-		this.x2 = f2.getX();
-		this.y2 = f2.getY();
+		setValues(f2.getX(), f2.getY());
 	}
 	
+	private void setValues(int x2, int y2){
+		this.x2 = x2;
+		this.y2 = y2;
+		this.height = Math.abs(this.x2-this.x);
+		this.width = Math.abs(this.y2-this.y);
+		this.perimeter = (int) Math.sqrt((this.getWidth()^2+this.getHeight()^2));
+	}
 	
+	/**Returns true if the line is going straight or upwards*/
+	public boolean getTilt(){		
+		if(-1<(this.y2-this.y)) return true;
+		else return false;}
 
-	public Color getColor(){	return color;}
-	public int getX(int pos){
-		if(pos == 1)return this.x;
-		if(pos == 2)return this.x2;
-		else return 0;
-	}
-
-	public int getY(int pos){
-		if(pos == 1)return this.y;
-		if(pos == 2)return this.y2;
-		else return 0;
-	}
-	
-	public int getArea(){		return 0;}
-	public int getHeight(){		return 0;}
-	public int getWidth(){		return 0;};
-	public int getPerimeter(){	return 0;}
-	
+	/**Move the positions of the line with respect to it's current position.*/
 	public void move(int dx, int dy,int dx2, int dy2){
 		super.move(dx,dy);
 		this.x2 = this.x2 + dx2;
 		this.y2 = this.y2 + dy2;
 	}
-	
+
+	/**Move the positions of the line to given values.*/
 	public void place(int x, int y, int x2, int y2){ 
 		super.place(x, y);
 		this.x2 = x2;
@@ -52,9 +45,7 @@ public class Line extends Point {
 	}
 
 	public void fill(Graphics g){
-		//EXTEND
+		//EXTEND, vad är annorlunda mot point? Inget-> ta bort
 	}
-	
-	public int compareTo(GeometricalForm f){return this.getArea() - f.getArea();}
 
 }
