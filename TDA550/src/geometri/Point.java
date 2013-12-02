@@ -3,7 +3,7 @@ package geometri;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Point extends AbstractForm implements GeometricalForm{
+public class Point extends AbstractForm{
 
 	public Point(int x, int y, Color c) throws IllegalPositionException{
 		super(x, y, c);

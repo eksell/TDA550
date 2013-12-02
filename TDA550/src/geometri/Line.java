@@ -3,7 +3,7 @@ package geometri;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Line extends Point implements GeometricalForm{
+public class Line extends Point{
 
 	int x2,y2;
 

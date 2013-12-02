@@ -29,7 +29,17 @@ public abstract class AbstractForm implements GeometricalForm{
 	 public int getPerimeter(){	return this.perimeter;}
 	
 	public void fill(Graphics g){
-		//EXTEND
+		g.setColor(color);
+	}
+	
+	public void move(int dx, int dy){ 
+		this.x = this.x + dx;
+		this.y = this.y + dy;
+	}
+	
+	public void place(int x, int y){ 
+		this.x = x;
+		this.y = y;
 	}
 	
 	/**Compare the areas and return an int describing their difference*/
