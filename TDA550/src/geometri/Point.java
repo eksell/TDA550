@@ -5,16 +5,18 @@ import java.awt.Graphics;
 
 public class Point extends AbstractForm{
 
+	/**Point constructor 1*/
 	public Point(int x, int y, Color c) throws IllegalPositionException{
 		super(x, y, c);
 		setValues();
 	}
-
+	/**Point constructor 2*/
 	public Point(GeometricalForm f, Color c){
 		super(f, c);
 		setValues();
 	}
 	
+	/**Calculate and set the values for this geometric shape.*/
 	private void setValues(){
 		this.height = 0;
 		this.width = 0;

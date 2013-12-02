@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public abstract class AbstractForm implements GeometricalForm{
 	
 	int x,y,perimeter,width,height,area;
-	Color color = null;
+	Color color;
 	
 	public AbstractForm (int x, int y, Color c) throws IllegalPositionException{
 		this.color = c;
@@ -41,7 +41,6 @@ public abstract class AbstractForm implements GeometricalForm{
 		this.x = x;
 		this.y = y;
 	}
-	
-	/**Compare the areas and return an int describing their difference*/
+
 	public int compareTo(GeometricalForm f){return this.getArea() - f.getArea();}
 }
