@@ -21,14 +21,4 @@ public class Point extends AbstractForm{
 		this.area = 0;
 		this.perimeter = 0;
 	}
-	
-	public void move(int dx, int dy){ 
-		this.x = this.x + dx;
-		this.y = this.y + dy;
-	}
-	
-	public void place(int x, int y){ 
-		this.x = x;
-		this.y = y;
-	}
 }

@@ -16,7 +16,7 @@ public class Line extends Point{
 		super(f1.getX(), f1.getY(), c);
 		setValues(f2.getX(), f2.getY());
 	}
-	
+
 	private void setValues(int x2, int y2){
 		this.x2 = x2;
 		this.y2 = y2;
@@ -24,11 +24,12 @@ public class Line extends Point{
 		this.width = Math.abs(this.y2-this.y);
 		this.perimeter = (int) Math.sqrt((this.getWidth()^2+this.getHeight()^2));
 	}
-	
+
 	/**Returns true if the line is going straight or upwards*/
 	public boolean getTilt(){		
 		if(-1<(this.y2-this.y)) return true;
-		else return false;}
+		else return false;
+	}
 
 	/**Move the positions of the line with respect to it's current position.*/
 	public void move(int dx, int dy,int dx2, int dy2){
@@ -42,10 +43,6 @@ public class Line extends Point{
 		super.place(x, y);
 		this.x2 = x2;
 		this.y2 = y2;
-	}
-
-	public void fill(Graphics g){
-		//EXTEND, vad är annorlunda mot point? Inget-> ta bort
 	}
 
 }
