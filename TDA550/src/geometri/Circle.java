@@ -10,5 +10,4 @@ public class Circle extends Oval{
 	public Circle(GeometricalForm f, int radius, Color c){
 		super(f, radius, radius, c);
 	}
-
 }

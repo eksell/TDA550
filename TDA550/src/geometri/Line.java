@@ -23,8 +23,9 @@ public class Line extends Point{
 		this.y2 = y2;
 		this.height = Math.abs(this.x2-this.x);
 		this.width = Math.abs(this.y2-this.y);
-		this.perimeter = (int) Math.sqrt((this.getWidth()^2+this.getHeight()^2));
 	}
+	
+	public int getPerimeter(){return (int) Math.sqrt((this.width^2+this.height^2));}
 
 	/**Returns true if the line is going straight or upwards*/
 	public boolean getTilt(){		

@@ -20,15 +20,15 @@ public class Rectangle extends AbstractForm{
 	private void setValues(int width, int height){
 		this.width = width;
 		this.height = height;
-		this.area = width*height;
-		this.perimeter = 2*width*height;
 		this.x2 = x+width;
 		this.y2 = y+height;
-		this.hashCode = hashCode();
 	}
-
+	
+	public int getPerimeter(){return 2*this.width*this.height;}
+	public int getArea(){return this.width*this.height;}
+	
 	public void fill(Graphics g){
-		g.fillRect(x, y, width, height);
-		g.setColor(color); //Fix?
+		g.fillRect(this.x, this.y, this.width, this.height);
+		g.setColor(this.color);
 	}
 }

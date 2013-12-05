@@ -22,5 +22,6 @@ public class Point extends AbstractForm{
 		this.width = 0;
 		this.area = 0;
 		this.perimeter = 0;
+		this.hashCode = hashCode();
 	}
 }

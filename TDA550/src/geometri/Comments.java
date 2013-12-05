@@ -11,6 +11,15 @@ public class Comments {
 
 	 */
 	
+
+//	Ni skall ha med equals- och hashCode-metoder.
+//	Ni kastar aldrig IllegalPositionException, dvs ni testar inte att x och är giltiga.
+//	perimeter och area är inte instansvariabler.
+//	Ytan och omkretsen beräknas på olika sätt i de olika typerna av geometriska former. Beräkningarna måste göras i subklasserna och inte i den abstrakta klassen.
+//	Testkörde kvadrater och cirklar. Färgen på objekten ändrar sig. Fel i metoden fill?
+//	Linjer ritas inte ut.
+//	Läs labtesen nogrannare när det gäller linjer. Metoderna move och place skall inte överskuggas.
+
 	
 
 	//JAVADOC TAGS
