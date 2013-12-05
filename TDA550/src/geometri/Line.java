@@ -5,66 +5,77 @@ import java.awt.Graphics;
 
 public class Line extends Point{
 
-	int x2,y2;
+	Point p2;
 
 	public Line(int x1, int y1, int x2, int y2, Color c) throws IllegalPositionException{
-		super(x1, y1, c);
+		super(x1,y1,c);
+		this.p2 = new Point(x2, y2, c);
+
+		setValues();
+
 		if(x2 > 700 || y2 > 700){
 			throw new IllegalPositionException();
 		}
-		setValues(x2, y2);
 	}
 
 	public Line(GeometricalForm f1, GeometricalForm f2, Color c) throws IllegalPositionException{
-		super(f1.getX(), f1.getY(), c);
-		setValues(f2.getX(), f2.getY());
+		super(f1,c);
+		this.p2 = new Point(f2.getX(),f2.getY(), c);
+
+		setValues();
 	}
 	
 	/**Calculate and set the values for this geometric shape.*/
-	private void setValues(int x2, int y2){
-		this.x2 = x2;
-		this.y2 = y2;
-		this.height = Math.abs(this.x2-this.x);
-		this.width = Math.abs(this.y2-this.y);
+	private void setValues(){
+		this.height = Math.abs(super.x-this.p2.x);
+		this.width = Math.abs(super.y-this.p2.y);
+		System.out.println("Line height: "+this.height+" Width: "+this.width);
 	}
 	
 	public int getPerimeter(){return (int) Math.sqrt((this.width^2+this.height^2));}
-
+	public int getArea(){ return 0;}
+	
 	/**Returns true if the line is going straight or upwards*/
 	public boolean getTilt(){		
-		if(-1<(this.y2-this.y)) return true;
+		if(-1<(this.p2.y-super.y)) return true;
 		else return false;
 	}
 
 	/**Move the positions of the line with respect to it's current position.*/
-	public void move(int dx, int dy,int dx2, int dy2){
-		super.move(dx,dy);
-		this.x2 = this.x2 + dx2;
-		this.y2 = this.y2 + dy2;
+	@Override
+	public void move(int dx, int dy){
+		super.x = super.x + dx;
+		this.p2.x = super.x+this.height;
+		super.y = super.y + dy;
+		this.p2.y = super.y + this.width;
 	}
 
+	
 	/**Move the positions of the line to given values.*/
-	public void place(int x, int y, int x2, int y2){ 
-		super.place(x, y);
-		this.x2 = x2;
-		this.y2 = y2;
+	@Override
+	public void place(int x, int y){ 
+		super.x = x;
+		this.p2.x = x+this.height;
+		super.y = y;
+		this.p2.y = y+this.width;
 	}
 	
 	public void fill(Graphics g){
 		g.setColor(color);
+		g.drawLine(super.x, super.y, this.p2.x, this.p2.y);
 	}
 	
 	@Override
 	public boolean equals(Object o){
+		//System.out.println("Equals Line height: "+this.height+" Width: "+this.width+ " Tilt: " + this.getTilt());
 		if( this.getClass() == o.getClass()){
-			if( this.width == ((AbstractForm) o).getWidth()&&
-					this.height ==((AbstractForm) o).getHeight()&&
-					this.color ==  ((AbstractForm) o).getColor()&&
+			if( this.width == ((Line) o).getWidth()&&
+					this.height ==((Line) o).getHeight()&&
+					this.color ==  ((Line) o).getColor()&&
 					this.getTilt() == ((Line) o).getTilt()){
-				this.equality = true; 
-			} else this.equality = false;
+				return true;
+			} 
 		}
-		return this.equality;
+		return false;
 	}
-
 }

@@ -2,10 +2,6 @@ package geometri;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Panel;
-
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 
 public class Rectangle extends AbstractForm{
 	
@@ -36,7 +32,7 @@ public class Rectangle extends AbstractForm{
 	public int getArea(){return this.width*this.height;}
 	
 	public void fill(Graphics g){
-		g.fillRect(this.x, this.y, this.width, this.height);
 		g.setColor(this.color);
+		g.fillRect(this.x, this.y, this.width, this.height);
 	}
 }

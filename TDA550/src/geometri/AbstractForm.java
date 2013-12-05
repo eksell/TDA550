@@ -5,7 +5,6 @@ import java.awt.*;
 public abstract class AbstractForm implements GeometricalForm{
 
 	int x,y,width,height;
-	boolean equality;
 	Color color;
 
 	public AbstractForm (int x, int y, Color c) throws IllegalPositionException{
@@ -49,15 +48,16 @@ public abstract class AbstractForm implements GeometricalForm{
 
 	public int compareTo(GeometricalForm f){return this.getArea() - f.getArea();}
 
+	@Override
 	public boolean equals(Object o){
 		if( this.getClass() == o.getClass()){
 			if( this.width == ((AbstractForm) o).getWidth()&&
 					this.height ==((AbstractForm) o).getHeight()&&
 					this.color ==  ((AbstractForm) o).getColor()){
-				this.equality = true; 
-			} else this.equality = false;
+				return true;
+			} 
 		}
-		return this.equality;
-	}
+		return false;
+	}	
 }
 

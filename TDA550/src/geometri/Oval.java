@@ -7,10 +7,12 @@ public class Oval extends AbstractForm{
 
 	public Oval(int x, int y, int width, int height, Color c) throws IllegalPositionException{
 		super(x,y,c);
+		setValues(width, height);
+		
 		if((x + (width/2)) > 700 || (y+(height/2) > 700)){
 			throw new IllegalPositionException();
 		}
-		setValues(width, height);
+
 	}
 
 	public Oval(GeometricalForm f, int width, int height, Color c){
@@ -28,8 +30,8 @@ public class Oval extends AbstractForm{
 	public int getArea(){return (int) Math.PI*(this.height/2)*(this.width/2);}
 
 	public void fill(Graphics g){
-		g.fillOval(this.x, this.y, this.width, this.height);
 		g.setColor(this.color);
+		g.fillOval(this.x, this.y, this.width, this.height);
 	}
 
 }
