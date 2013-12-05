@@ -5,12 +5,12 @@ import java.awt.Graphics;
 
 public class Point extends AbstractForm{
 
-	/**Point constructor 1*/
+	/**Point constructor*/
 	public Point(int x, int y, Color c) throws IllegalPositionException{
 		super(x, y, c);
 		setValues();
 	}
-	/**Point constructor 2*/
+	/**Point constructor*/
 	public Point(GeometricalForm f, Color c){
 		super(f, c);
 		setValues();

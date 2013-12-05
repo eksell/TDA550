@@ -24,9 +24,11 @@ public class Rectangle extends AbstractForm{
 		this.perimeter = 2*width*height;
 		this.x2 = x+width;
 		this.y2 = y+height;
+		this.hashCode = hashCode();
 	}
 
 	public void fill(Graphics g){
 		g.fillRect(x, y, width, height);
+		g.setColor(color); //Fix?
 	}
 }

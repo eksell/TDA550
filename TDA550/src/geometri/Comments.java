@@ -8,14 +8,7 @@ public class Comments {
 			C:\Users\Anton\Documents\GitHub\TDA550
 
 	  		NEXT:
-	 
-	 * 
-	 * 		GIVNA KOSTRUKTORER:
-	 *
-	 *	   	public Rectangle(int x, int y, int width, int height, Color c) throws IllegalPositionException
-	 *   	public Rectangle(GeometricalForm f, int width, int height, Color c)
-	 *  	public Square(int x, int y, int side, Color c) throws IllegalPositionException
-	 * 		public Square(GeometricalForm f, int side, Color c)
+
 	 */
 	
 	

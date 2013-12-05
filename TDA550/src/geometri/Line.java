@@ -16,7 +16,8 @@ public class Line extends Point{
 		super(f1.getX(), f1.getY(), c);
 		setValues(f2.getX(), f2.getY());
 	}
-
+	
+	/**Calculate and set the values for this geometric shape.*/
 	private void setValues(int x2, int y2){
 		this.x2 = x2;
 		this.y2 = y2;
@@ -43,6 +44,23 @@ public class Line extends Point{
 		super.place(x, y);
 		this.x2 = x2;
 		this.y2 = y2;
+	}
+	
+	public void fill(Graphics g){
+		g.setColor(color);
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		if( this.getClass() == o.getClass()){
+			if( this.width == ((AbstractForm) o).getWidth()&&
+					this.height ==((AbstractForm) o).getHeight()&&
+					this.color ==  ((AbstractForm) o).getColor()&&
+					this.getTilt() == ((Line) o).getTilt()){
+				this.equality = true; 
+			} else this.equality = false;
+		}
+		return this.equality;
 	}
 
 }

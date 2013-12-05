@@ -25,6 +25,7 @@ public class Oval extends AbstractForm{
 
 	public void fill(Graphics g){
 		g.fillOval(x, y, width, height);
+		g.setColor(color);
 	}
 
 }
