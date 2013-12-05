@@ -7,6 +7,9 @@ public class Oval extends AbstractForm{
 
 	public Oval(int x, int y, int width, int height, Color c) throws IllegalPositionException{
 		super(x,y,c);
+		if((x + (width/2)) > 700 || (y+(height/2) > 700)){
+			throw new IllegalPositionException();
+		}
 		setValues(width, height);
 	}
 

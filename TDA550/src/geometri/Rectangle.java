@@ -2,6 +2,10 @@ package geometri;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Panel;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 public class Rectangle extends AbstractForm{
 	
@@ -10,6 +14,10 @@ public class Rectangle extends AbstractForm{
 	public Rectangle(int x, int y, int width, int height, Color c) throws IllegalPositionException{
 		super(x, y, c);
 		setValues(width, height);
+		
+		if(this.x2 > 700|| this.y2 > 700){
+			throw new IllegalPositionException();
+		}
 	}
 	
 	public Rectangle(GeometricalForm f, int width, int height, Color c){

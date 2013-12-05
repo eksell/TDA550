@@ -1,9 +1,6 @@
 package geometri;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
-import java.io.ObjectInputStream.GetField;
+import java.awt.*;
 
 public abstract class AbstractForm implements GeometricalForm{
 
@@ -12,11 +9,14 @@ public abstract class AbstractForm implements GeometricalForm{
 	Color color;
 
 	public AbstractForm (int x, int y, Color c) throws IllegalPositionException{
-		if(x > Container.WIDTH || y > Container.HEIGHT)throw new IllegalPositionException();
+		if((x < 0)|| (y < 0)){
+			System.out.println("AbstractForm throw");
+			throw new IllegalPositionException();
+		}
 		this.color = c;
 		this.x = x;
-		this.y = y;		
-	}
+		this.y = y;
+	}	
 
 	public AbstractForm(GeometricalForm f, Color c){
 		this.color = c;

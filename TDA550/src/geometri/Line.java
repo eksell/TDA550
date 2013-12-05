@@ -9,6 +9,9 @@ public class Line extends Point{
 
 	public Line(int x1, int y1, int x2, int y2, Color c) throws IllegalPositionException{
 		super(x1, y1, c);
+		if(x2 > 700 || y2 > 700){
+			throw new IllegalPositionException();
+		}
 		setValues(x2, y2);
 	}
 

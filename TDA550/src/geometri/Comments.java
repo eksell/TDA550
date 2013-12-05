@@ -12,7 +12,7 @@ public class Comments {
 	 */
 	
 
-//	Ni skall ha med equals- och hashCode-metoder.
+
 //	Ni kastar aldrig IllegalPositionException, dvs ni testar inte att x och är giltiga.
 //	perimeter och area är inte instansvariabler.
 //	Ytan och omkretsen beräknas på olika sätt i de olika typerna av geometriska former. Beräkningarna måste göras i subklasserna och inte i den abstrakta klassen.
