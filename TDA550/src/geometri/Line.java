@@ -13,9 +13,9 @@ public class Line extends Point{
 
 		setValues();
 
-		if(x2 > 700 || y2 > 700){
-			throw new IllegalPositionException();
-		}
+//		if(x2 > 700 || y2 > 700){
+//			throw new IllegalPositionException();
+//		}
 	}
 
 	public Line(GeometricalForm f1, GeometricalForm f2, Color c) throws IllegalPositionException{
@@ -29,7 +29,7 @@ public class Line extends Point{
 	private void setValues(){
 		this.height = Math.abs(super.x-this.p2.x);
 		this.width = Math.abs(super.y-this.p2.y);
-		System.out.println("Line height: "+this.height+" Width: "+this.width);
+//		System.out.println("Line height: "+this.height+" Width: "+this.width);
 	}
 	
 	public int getPerimeter(){return (int) Math.sqrt((this.width^2+this.height^2));}

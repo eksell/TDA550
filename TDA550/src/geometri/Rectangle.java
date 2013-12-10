@@ -11,9 +11,9 @@ public class Rectangle extends AbstractForm{
 		super(x, y, c);
 		setValues(width, height);
 		
-		if(this.x2 > 700|| this.y2 > 700){
-			throw new IllegalPositionException();
-		}
+//		if(this.x2 > 700|| this.y2 > 700){
+//			throw new IllegalPositionException();
+//		}
 	}
 	
 	public Rectangle(GeometricalForm f, int width, int height, Color c){

@@ -47,7 +47,7 @@ public abstract class AbstractForm implements GeometricalForm{
 	}
 
 	public int compareTo(GeometricalForm f){
-		private int difference; 
+		int difference; 
 		if(this.getArea() != f.getArea())
 			difference = this.getArea() - f.getArea();
 		else difference = this.getPerimeter() - f.getPerimeter();

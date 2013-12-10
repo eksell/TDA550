@@ -9,9 +9,9 @@ public class Oval extends AbstractForm{
 		super(x,y,c);
 		setValues(width, height);
 		
-		if((x + (width/2)) > 700 || (y+(height/2) > 700)){
-			throw new IllegalPositionException();
-		}
+//		if((x + (width/2)) > 700 || (y+(height/2) > 700)){
+//			throw new IllegalPositionException();
+//		}
 
 	}
 

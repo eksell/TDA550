@@ -9,9 +9,9 @@ public class Point extends AbstractForm{
 	public Point(int x, int y, Color c) throws IllegalPositionException{
 		super(x, y, c);
 		setValues();
-		if(x>700 || y>700){
-			throw new IllegalPositionException();
-		}
+//		if(x>700 || y>700){
+//			throw new IllegalPositionException();
+//		}
 	}
 	/**Point constructor*/
 	public Point(GeometricalForm f, Color c){
