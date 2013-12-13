@@ -11,7 +11,6 @@ import orig2011.v0.GameTile;
 import orig2011.v0.Position;
 import orig2011.v0.RoundTile;
 import orig2011.v0.SquareTile;
-import orig2011.v0.Constants;
 
 /**
  * A somewhat defective implementation of the game Reversi. The purpose
