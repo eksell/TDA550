@@ -1,16 +1,18 @@
 package orig2011.v2;
 
-import orig2011.v2.GameModel;
-
 /**
- * Factory interface for available games.
+ * Factory class for available games.
  */
-public interface IGameFactory {
+public class GameFactory implements IGameFactory {
+
 	/**
 	 * Returns an array with names of games this factory can create. Used by GUI
 	 * list availible games.
 	 */
-	public String[] getGameNames();
+	@Override
+	public String[] getGameNames() {
+		return new String[] { "Gold"};
+	}
 
 	/**
 	 * Returns a new model object for the game corresponding to its Name.
@@ -20,5 +22,12 @@ public interface IGameFactory {
 	 * @throws IllegalArgumentException
 	 *             if no such game
 	 */
-	public <T extends GameModel> T createGame(final String gameName);
+	@Override
+	public GameModel createGame(final String gameName) {
+		if (gameName.equals("Gold")) {
+			return new GoldModel();
+		}
+
+		throw new IllegalArgumentException("No such game: " + gameName);
+	}
 }

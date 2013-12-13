@@ -6,11 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import orig2011.v0.GameOverException;
-import orig2011.v0.GameTile;
-import orig2011.v0.Position;
-import orig2011.v0.RoundTile;
-
 /**
  * Sample game for illustration. Intentionally stupid; more interesting
  * games to be provided by students.

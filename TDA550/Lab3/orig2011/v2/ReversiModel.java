@@ -4,14 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 
-import orig2011.v0.CompositeTile;
-import orig2011.v0.CrossTile;
-import orig2011.v0.GameOverException;
-import orig2011.v0.GameTile;
-import orig2011.v0.Position;
-import orig2011.v0.RoundTile;
-import orig2011.v0.SquareTile;
-
 /**
  * A somewhat defective implementation of the game Reversi. The purpose
  * of this class is to illustrate shortcomings in the game framework.

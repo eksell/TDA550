@@ -1,9 +1,6 @@
 package orig2011.v2;
 
 import java.awt.Dimension;
-import orig2011.v0.Constants;
-import orig2011.v0.GameTile;
-import orig2011.v0.Position;
 
 public abstract class GameUtils{
 
@@ -26,12 +23,12 @@ public abstract class GameUtils{
 	 *            Coordinate in the gameboard matrix.
 	 * @param y
 	 *            Coordinate in the gameboard matrix.
-	 * @param tile
+	 * @param gameTile
 	 *            The type of tile to paint in specified position
 	 */
-	public static void setGameboardState(final GameTile[][] t, final int x, final int y,
-			final GameTile tile) {
-		t[x][y] = tile;
+	public static void setGameboardState(final GameTile[][] gameboardState, final int x, final int y,
+			final GameTile gameTile) {
+		gameboardState[x][y] = gameTile;
 	}
 
 	/**

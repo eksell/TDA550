@@ -1,6 +1,9 @@
 package orig2011.v1;
 
-import orig2011.v0.*;
+import orig2011.v0.GameModel;
+import orig2011.v0.GoldModel;
+import orig2011.v0.IGameFactory;
+import orig2011.v0.ReversiModel;
 
 /**
  * Factory class for available games.
