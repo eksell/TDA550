@@ -1,4 +1,4 @@
-package uppgift_1;
+package orig2011.v1;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

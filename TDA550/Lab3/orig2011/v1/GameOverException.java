@@ -1,4 +1,4 @@
-package uppgift_1;
+package orig2011.v1;
 
 /**
  * Thrown by GameModel.doCommand at game termination. The exception contains

@@ -1,4 +1,4 @@
-package uppgift_1;
+package orig2011.v1;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
