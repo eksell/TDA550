@@ -90,6 +90,7 @@ public class ReversiModel extends GameUtils implements GameModel {
 		for (int i = 0; i < this.width; i++) {
 			for (int j = 0; j < this.height; j++) {
 				this.board[i][j] = PieceColor.EMPTY;
+				setGameboardState(this.gameboardState,i, j,blankTile);
 			}
 		}
 
@@ -103,12 +104,6 @@ public class ReversiModel extends GameUtils implements GameModel {
 		this.board[midX + 1][midY] = PieceColor.BLACK;
 		this.board[midX][midY + 1] = PieceColor.BLACK;
 
-		// Set initial images 
-		for (int i = 0; i < this.width; i++) {
-			for (int j = 0; j < this.height; j++) {
-				setGameboardState(this.gameboardState,i, j, getGameboardState(i, j));
-			}
-		}
 		
 		// Set the initial score.
 		this.whiteScore = 2;
@@ -328,7 +323,7 @@ public class ReversiModel extends GameUtils implements GameModel {
 	 * @param y
 	 *            Coordinate in the gameboard matrix.
 	 */
-	public GameTile getGameboardState(final int x, final int y){		
+	public GameTile getGameboardState(final int x, final int y){
 
 		if(cursorPos.getX() == x && cursorPos.getY() == y){
 			if(canTurn(getTurnColor(), cursorPos)){
@@ -337,8 +332,13 @@ public class ReversiModel extends GameUtils implements GameModel {
 				if(turn == Turn.WHITE)
 					return cursorWhiteTile;
 			}
-			else if(!canTurn(turn, cursorPos))
-				return cursorRedTile;
+			else if(!canTurn(turn, cursorPos)){
+				if(turn == Turn.BLACK)
+					return new CompositeTile(cursorBlackTile, cursorRedTile);
+				if(turn == Turn.WHITE)
+					return new CompositeTile(cursorWhiteTile, cursorRedTile);
+				
+			}
 		}
 		else{
 			switch (this.board[x][y]) {
@@ -407,4 +407,10 @@ public class ReversiModel extends GameUtils implements GameModel {
 		}
 		setGameboardState(this.gameboardState,this.cursorPos, cursoredTile);
 	}
+	
+//	private static int number = 0;
+//	public static void pT(int n, int u, int m, int b){
+//		number++;
+//		System.out.println("Is at: "+number+" "+n+" "+ u+" "+m +" "+ b);
+//	}
 }

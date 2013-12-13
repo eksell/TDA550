@@ -1,7 +1,5 @@
 package orig2011.v2;
 
-import orig2011.v2.GameModel;
-
 /**
  * Factory interface for available games.
  */
@@ -20,5 +18,5 @@ public interface IGameFactory {
 	 * @throws IllegalArgumentException
 	 *             if no such game
 	 */
-	public <T extends GameModel> T createGame(final String gameName);
+	public GameModel createGame(final String gameName);
 }
