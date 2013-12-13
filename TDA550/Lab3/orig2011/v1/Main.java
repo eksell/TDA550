@@ -13,7 +13,7 @@ public class Main {
 
 		GUIView guiView = new GUIView(new ReversiFactory());
 
-		frame.setTitle("Games 2.0");
+		frame.setTitle("Games 2.1");
 
 		// Add gui to window
 		frame.add(guiView);
