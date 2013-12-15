@@ -4,10 +4,10 @@ import java.awt.*;
 
 public abstract class AbstractForm implements GeometricalForm{
 
-	int x,y;
-	int width = 0;
-	int height = 0;
-	Color color;
+	protected int x,y;
+	protected int width = 0;
+	protected int height = 0;
+	protected Color color;
 
 	public AbstractForm (int x, int y, Color c) throws IllegalPositionException{
 		checkPos("AbstractForm Constructor");
