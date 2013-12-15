@@ -4,14 +4,13 @@ import java.awt.*;
 
 public abstract class AbstractForm implements GeometricalForm{
 
-	int x,y,width,height;
+	int x,y;
+	int width = 0;
+	int height = 0;
 	Color color;
 
 	public AbstractForm (int x, int y, Color c) throws IllegalPositionException{
-		if((x < 0)|| (y < 0)){
-			System.out.println("AbstractForm throw");
-			throw new IllegalPositionException();
-		}
+		checkPos("AbstractForm Constructor");
 		this.color = c;
 		this.x = x;
 		this.y = y;
@@ -28,7 +27,7 @@ public abstract class AbstractForm implements GeometricalForm{
 	public int getY(){			return this.y;}
 	public int getHeight(){		return this.height;}
 	public int getWidth(){		return this.width;}
-	public int getHashCode(){return this.hashCode();}
+	public abstract int getHashCode();
 	public abstract int getArea();
 	public abstract int getPerimeter();
 
@@ -39,11 +38,13 @@ public abstract class AbstractForm implements GeometricalForm{
 	public void move(int dx, int dy){ 
 		this.x = this.x + dx;
 		this.y = this.y + dy;
+		checkPos("Move");
 	}
 
 	public void place(int x, int y){ 
 		this.x = x;
 		this.y = y;
+		checkPos("Place");
 	}
 
 	public int compareTo(GeometricalForm f){
@@ -64,6 +65,22 @@ public abstract class AbstractForm implements GeometricalForm{
 			} 
 		}
 		return false;
-	}	
+	}
+
+	protected void checkPos(String msg){
+		try{
+		if(this.x < 0
+				||this.y < 0
+				||this.width < 0
+				||this.height < 0 
+				||this.getArea() < 0 
+				||this.getPerimeter() < 0){
+			throw new IllegalPositionException(msg);
+			}
+		}catch(IllegalPositionException e){
+			System.out.println(e);
+			System.exit(0);	
+		}
+	}
 }
 

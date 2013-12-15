@@ -4,16 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rectangle extends AbstractForm{
-	
-	int x2,y2;
 
 	public Rectangle(int x, int y, int width, int height, Color c) throws IllegalPositionException{
 		super(x, y, c);
 		setValues(width, height);
-		
-//		if(this.x2 > 700|| this.y2 > 700){
-//			throw new IllegalPositionException();
-//		}
+		if((width < 0)|| (height < 0)){
+			throw new IllegalPositionException("Rect throw");
+		}
 	}
 	
 	public Rectangle(GeometricalForm f, int width, int height, Color c){
@@ -24,8 +21,7 @@ public class Rectangle extends AbstractForm{
 	private void setValues(int width, int height){
 		this.width = width;
 		this.height = height;
-		this.x2 = x+width;
-		this.y2 = y+height;
+		checkPos("Rect Constructor");
 	}
 	
 	public int getPerimeter(){return 2*this.width*this.height;}
@@ -34,5 +30,10 @@ public class Rectangle extends AbstractForm{
 	public void fill(Graphics g){
 		g.setColor(this.color);
 		g.fillRect(this.x, this.y, this.width, this.height);
+	}
+	
+	@Override
+	public int getHashCode() {
+		return this.getArea()*this.getPerimeter()*5;
 	}
 }

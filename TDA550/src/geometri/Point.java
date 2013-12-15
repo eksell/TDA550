@@ -1,7 +1,6 @@
 package geometri;
 
 import java.awt.Color;
-import java.awt.Graphics;
 
 public class Point extends AbstractForm{
 
@@ -9,9 +8,6 @@ public class Point extends AbstractForm{
 	public Point(int x, int y, Color c) throws IllegalPositionException{
 		super(x, y, c);
 		setValues();
-//		if(x>700 || y>700){
-//			throw new IllegalPositionException();
-//		}
 	}
 	/**Point constructor*/
 	public Point(GeometricalForm f, Color c){
@@ -27,4 +23,9 @@ public class Point extends AbstractForm{
 	
 	public int getPerimeter(){return 0;}
 	public int getArea(){return 0;}
+	
+	@Override
+	public int getHashCode() {
+		return this.getArea()*this.getPerimeter()-1;
+	}
 }

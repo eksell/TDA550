@@ -8,11 +8,6 @@ public class Oval extends AbstractForm{
 	public Oval(int x, int y, int width, int height, Color c) throws IllegalPositionException{
 		super(x,y,c);
 		setValues(width, height);
-		
-//		if((x + (width/2)) > 700 || (y+(height/2) > 700)){
-//			throw new IllegalPositionException();
-//		}
-
 	}
 
 	public Oval(GeometricalForm f, int width, int height, Color c){
@@ -24,6 +19,7 @@ public class Oval extends AbstractForm{
 	private void setValues(int width, int height){
 		this.height = height;
 		this.width = width;
+		checkPos("Oval Constructor");
 	}
 	
 	public int getPerimeter(){return (int) (Math.PI*2*Math.sqrt(((this.height/2)^2)+((this.width/2)^2)));}
@@ -33,6 +29,13 @@ public class Oval extends AbstractForm{
 		g.setColor(this.color);
 		g.fillOval(this.x, this.y, this.width, this.height);
 	}
+
+	@Override
+	public int getHashCode() {
+		return this.getArea()*this.getPerimeter()*3;
+	}
+	
+	
 
 }
 

@@ -5,23 +5,18 @@ import java.awt.Graphics;
 
 public class Line extends Point{
 
-	Point p2;
+	private Point p2;
+	private boolean [] tilt = {true,true};
 
 	public Line(int x1, int y1, int x2, int y2, Color c) throws IllegalPositionException{
 		super(x1,y1,c);
 		this.p2 = new Point(x2, y2, c);
-
 		setValues();
-
-//		if(x2 > 700 || y2 > 700){
-//			throw new IllegalPositionException();
-//		}
 	}
 
 	public Line(GeometricalForm f1, GeometricalForm f2, Color c) throws IllegalPositionException{
 		super(f1,c);
 		this.p2 = new Point(f2.getX(),f2.getY(), c);
-
 		setValues();
 	}
 	
@@ -30,15 +25,30 @@ public class Line extends Point{
 		this.height = Math.abs(super.x-this.p2.x);
 		this.width = Math.abs(super.y-this.p2.y);
 //		System.out.println("Line height: "+this.height+" Width: "+this.width);
+		
+		int transfer;
+		if(p2.x < super.x){
+			transfer = super.x;
+			super.x = p2.x;
+			p2.x = transfer;
+			tilt[0] = false;
+		}
+		
+		if(p2.y < super.y){
+			transfer = super.y;
+			super.y = p2.y;
+			p2.y = transfer;
+			tilt[1] = false;
+		}
+		checkPos("Line Constructor");
 	}
 	
 	public int getPerimeter(){return (int) Math.sqrt((this.width^2+this.height^2));}
 	public int getArea(){ return 0;}
 	
-	/**Returns true if the line is going straight or upwards*/
-	public boolean getTilt(){		
-		if(-1<(this.p2.y-super.y)) return true;
-		else return false;
+	/**Returns a boolean array describing the tilt [x,y]*/
+	public boolean[] getTilt(){		
+		return tilt;
 	}
 
 	/**Move the positions of the line with respect to it's current position.*/
@@ -77,5 +87,10 @@ public class Line extends Point{
 			} 
 		}
 		return false;
+	}
+	
+	@Override
+	public int getHashCode() {
+		return this.getArea()*this.getPerimeter()*2;
 	}
 }
