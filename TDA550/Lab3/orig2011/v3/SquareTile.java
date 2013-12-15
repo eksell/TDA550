@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 
-public class SquareTile extends GameTile {
+public class SquareTile implements GameTile {
 	private final Color fillColor;
 	private final Color strokeColor;
 	private final Stroke stroke;

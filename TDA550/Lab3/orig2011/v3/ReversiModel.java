@@ -3,6 +3,7 @@ package orig2011.v3;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 /**
  * A somewhat defective implementation of the game Reversi. The purpose
@@ -155,15 +156,17 @@ public class ReversiModel extends GameUtils implements GameModel {
 
 	private void tryPlay() {
 		if (isPositionEmpty(this.cursorPos)) {
-			GameTile t;
+			
+			GameTile t = null;
 			if (this.turn == Turn.BLACK) {
 				t = blackGridTile;
 			} else {
 				t = whiteGridTile;
 			}
+			
 			if (canTurn(this.turn, this.cursorPos)) {
 				turnOver(this.turn, this.cursorPos);
-				setGameboardState(this.gameboardState,this.cursorPos, getGameboardState(this.cursorPos));
+				setGameboardState(this.gameboardState,this.cursorPos, t);
 				this.board[this.cursorPos.getX()][this.cursorPos.getY()] =
 						(this.turn == Turn.BLACK
 						? PieceColor.BLACK
@@ -206,16 +209,12 @@ public class ReversiModel extends GameUtils implements GameModel {
 					if (this.board[x][y] == opponentColor) {
 						canTurn = true;
 					} else if (this.board[x][y] == myColor && canTurn) {
-						// Move backwards to the cursor, flipping bricks
-						// as we go.
+						// Move backwards to the cursor, flipping bricks as we go.
 						x -= xDelta;
 						y -= yDelta;
 						while (!(x == cursorPos.getX() && y == cursorPos.getY())) {
 							this.board[x][y] = myColor;
 							setGameboardState(this.gameboardState,x,y, getGameboardState(x,y));
-//							setGameboardState(x, y,
-//									myColor == PieceColor.BLACK ? blackGridTile
-//											: whiteGridTile);
 							x -= xDelta;
 							y -= yDelta;
 							this.blackScore += blackResult;
@@ -406,11 +405,7 @@ public class ReversiModel extends GameUtils implements GameModel {
 			cursoredTile = new CompositeTile(t, cursorRedTile);
 		}
 		setGameboardState(this.gameboardState,this.cursorPos, cursoredTile);
+		
 	}
-	
-//	private static int number = 0;
-//	public static void pT(int n, int u, int m, int b){
-//		number++;
-//		System.out.println("Is at: "+number+" "+n+" "+ u+" "+m +" "+ b);
-//	}
+
 }

@@ -162,15 +162,15 @@ public class ReversiModel extends GameModel {
 
 	private void tryPlay() {
 		if (isPositionEmpty(this.cursorPos)) {
-			GameTile t;
+			GameTile tile;
 			if (this.turn == Turn.BLACK) {
-				t = blackGridTile;
+				tile = blackGridTile;
 			} else {
-				t = whiteGridTile;
+				tile = whiteGridTile;
 			}
 			if (canTurn(this.turn, this.cursorPos)) {
 				turnOver(this.turn, this.cursorPos);
-				setGameboardState(this.cursorPos, t);
+				setGameboardState(this.cursorPos, tile);
 				this.board[this.cursorPos.getX()][this.cursorPos.getY()] =
 						(this.turn == Turn.BLACK
 								? PieceColor.BLACK
