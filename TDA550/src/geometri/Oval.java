@@ -19,7 +19,7 @@ public class Oval extends AbstractForm{
 	private void setValues(int width, int height){
 		this.height = height;
 		this.width = width;
-		checkPos("Oval Constructor");
+		checkPos("Oval/Circle Constructor");
 	}
 	
 	public int getPerimeter(){return (int) (Math.PI*2*Math.sqrt(((this.height/2)^2)+((this.width/2)^2)));}

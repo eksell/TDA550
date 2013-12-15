@@ -19,6 +19,7 @@ public class Point extends AbstractForm{
 	private void setValues(){
 		this.height = 0;
 		this.width = 0;
+		checkPos("Point/Line Constructor");
 	}
 	
 	public int getPerimeter(){return 0;}

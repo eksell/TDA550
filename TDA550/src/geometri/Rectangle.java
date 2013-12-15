@@ -21,7 +21,7 @@ public class Rectangle extends AbstractForm{
 	private void setValues(int width, int height){
 		this.width = width;
 		this.height = height;
-		checkPos("Rect Constructor");
+		checkPos("Rect/Square Constructor");
 	}
 	
 	public int getPerimeter(){return 2*this.width*this.height;}

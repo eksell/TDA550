@@ -78,13 +78,8 @@ public class Line extends Point{
 	@Override
 	public boolean equals(Object o){
 		//System.out.println("Equals Line height: "+this.height+" Width: "+this.width+ " Tilt: " + this.getTilt());
-		if( this.getClass() == o.getClass()){
-			if( this.width == ((Line) o).getWidth()&&
-					this.height ==((Line) o).getHeight()&&
-					this.color ==  ((Line) o).getColor()&&
-					this.getTilt() == ((Line) o).getTilt()){
-				return true;
-			} 
+		if( super.equals(this) && this.getTilt() == ((Line) o).getTilt()){
+				return true; 
 		}
 		return false;
 	}

@@ -57,7 +57,7 @@ public abstract class AbstractForm implements GeometricalForm{
 
 	@Override
 	public boolean equals(Object o){
-		if( this.getClass() == o.getClass()){
+		if( this.getClass() == o.getClass() && this != null){
 			if( this.width == ((AbstractForm) o).getWidth()&&
 					this.height ==((AbstractForm) o).getHeight()&&
 					this.color ==  ((AbstractForm) o).getColor()){
@@ -75,10 +75,10 @@ public abstract class AbstractForm implements GeometricalForm{
 				||this.height < 0 
 				||this.getArea() < 0 
 				||this.getPerimeter() < 0){
-			throw new IllegalPositionException(msg);
+			throw new IllegalPositionException();
 			}
 		}catch(IllegalPositionException e){
-			System.out.println(e);
+			System.out.println("Exit caused of IllegalPositionExeption in: " + msg);
 			System.exit(0);	
 		}
 	}
