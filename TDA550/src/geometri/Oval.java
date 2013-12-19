@@ -6,20 +6,12 @@ import java.awt.Graphics;
 public class Oval extends AbstractForm{
 
 	public Oval(int x, int y, int width, int height, Color c) throws IllegalPositionException{
-		super(x,y,c);
-		setValues(width, height);
+		super(x,y,width, height,c);
 	}
 
 	public Oval(GeometricalForm f, int width, int height, Color c){
-		super(f,c);
-		setValues(width, height);
-	}
-	
-	/**Calculate and set the values for this geometric shape.*/
-	private void setValues(int width, int height){
-		this.height = height;
-		this.width = width;
-		checkPos("Oval/Circle Constructor");
+		// width, height and color left in constructor due to the set constructors in the task
+		super(f);
 	}
 	
 	public int getPerimeter(){return (int) (Math.PI*2*Math.sqrt(((this.height/2)^2)+((this.width/2)^2)));}
@@ -29,14 +21,6 @@ public class Oval extends AbstractForm{
 		g.setColor(this.color);
 		g.fillOval(this.x, this.y, this.width, this.height);
 	}
-
-	@Override
-	public int getHashCode() {
-		return this.getArea()*this.getPerimeter()*3;
-	}
-	
-	
-
 }
 
 
