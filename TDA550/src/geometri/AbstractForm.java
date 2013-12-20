@@ -8,8 +8,8 @@ public abstract class AbstractForm implements GeometricalForm{
 	protected Color color;
 
 	public AbstractForm (int x, int y, int width, int height, Color c) throws IllegalPositionException{
-		checkPos("AbstractForm Constructor");
 		setValues(x, y, width, height, c);
+		checkPos("AbstractForm Constructor");
 	}	
 
 	public AbstractForm(GeometricalForm f){
@@ -31,7 +31,8 @@ public abstract class AbstractForm implements GeometricalForm{
 	public int getHeight(){		return this.height;}
 	public int getWidth(){		return this.width;}
 
-	public int getHashCode() {
+	@Override
+	public int hashCode() {
 		return this.getWidth()*this.getHeight()*this.getColor().hashCode();
 	}
 
@@ -39,24 +40,16 @@ public abstract class AbstractForm implements GeometricalForm{
 		g.setColor(this.color);
 	}
 
-	public void move(int dx, int dy){ 
+	public void move(int dx, int dy) throws IllegalPositionException{ 
 		this.x = this.x + dx;
 		this.y = this.y + dy;
-		try {
-			checkPos("Move");
-		} catch (IllegalPositionException e) {
-			e.printStackTrace();
-		}
+		checkPos("Move");
 	}
 
-	public void place(int x, int y){ 
+	public void place(int x, int y) throws IllegalPositionException{ 
 		this.x = x;
 		this.y = y;
-		try {
-			checkPos("Place");
-		} catch (IllegalPositionException e) {
-			e.printStackTrace();
-		}
+		checkPos("Place");
 	}
 
 	public int compareTo(GeometricalForm f){
@@ -69,7 +62,10 @@ public abstract class AbstractForm implements GeometricalForm{
 
 	@Override
 	public boolean equals(Object o){
-		if( this.getClass() == o.getClass() && o != null){
+		if(o == null){
+			return false;
+		}
+		if( this.getClass() == o.getClass()){
 			if( this.width == ((AbstractForm) o).getWidth()&&
 					this.height ==((AbstractForm) o).getHeight()&&
 					this.color ==  ((AbstractForm) o).getColor()){
@@ -90,4 +86,3 @@ public abstract class AbstractForm implements GeometricalForm{
 			}
 	}
 }
-
