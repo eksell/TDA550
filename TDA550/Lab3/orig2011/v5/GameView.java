@@ -1,10 +1,13 @@
 package orig2011.v5;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JComponent;
 
@@ -12,7 +15,7 @@ import javax.swing.JComponent;
  * A view Component suitable for inclusion in an AWT Frame. Paints itself by
  * consulting its model.
  */
-public class GameView extends JComponent {
+public class GameView extends JComponent implements PropertyChangeListener {
 
 	/** Size of game model */
 	private final Dimension modelSize;
@@ -34,6 +37,8 @@ public class GameView extends JComponent {
 	 */
 	public GameView() {
 		this(40);
+		this.setModel(this.model);
+		System.out.println("Did construct GameView");
 	}
 
 	/**
@@ -49,14 +54,22 @@ public class GameView extends JComponent {
 				new Dimension(this.modelSize.width * tileSide,
 						this.modelSize.height * tileSide);
 		setPreferredSize(preferredSize);
+		
 	}
+	
+	
 
 	/**
 	 * Updates the view with a new model.
 	 */
 	public void setModel(final GameModel model) {
+		if(this.model != null)
+			this.model.removeObserver(this);
 		this.model = model;
+		if(model != null)
+			this.model.addObserver(this);
 		repaint();
+		System.out.println("Did setModel");
 	}
 
 	/**
@@ -108,5 +121,15 @@ public class GameView extends JComponent {
 			final char[] message = "No model chosen.".toCharArray(); 
 			g.drawChars(message, 0, message.length, 50, 50);
 		}
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent ev) {
+		// TODO When a property is changed do this
+		if(ev.getSource() instanceof GameModel){
+			repaint();
+			System.out.println("PropChange in GameView");
+		}
+		
 	}
 }
