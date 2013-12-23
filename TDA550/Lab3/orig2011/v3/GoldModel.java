@@ -16,7 +16,7 @@ import java.util.List;
  * of remaining coins. The game is won when all coins are collected and lost when
  * collector leaves game board.
  */
-public class GoldModel extends GameUtils implements GameModel {
+public class GoldModel implements GameModel {
 	public enum Directions {
 		EAST(1, 0),
 		WEST(-1, 0),
@@ -92,19 +92,19 @@ public class GoldModel extends GameUtils implements GameModel {
 	 * Create a new model for the gold game.
 	 */
 	public GoldModel() {
-		Dimension size = getGameboardSize();
+		Dimension size = GameUtils.getGameboardSize();
 		this.gameboardState = new GameTile[size.width][size.height];
 
 		// Blank out the whole gameboard
 		for (int i = 0; i < size.width; i++) {
 			for (int j = 0; j < size.height; j++) {
-				setGameboardState(this.gameboardState, i, j, BLANK_TILE);
+				GameUtils.setGameboardState(this.gameboardState, i, j, BLANK_TILE);
 			}
 		}
 
 		// Insert the collector in the middle of the gameboard.
 		this.collectorPos = new Position(size.width / 2, size.height / 2);
-		setGameboardState(this.gameboardState, this.collectorPos, COLLECTOR_TILE);
+		GameUtils.setGameboardState(this.gameboardState, this.collectorPos, COLLECTOR_TILE);
 
 		// Insert coins into the gameboard.
 		for (int i = 0; i < COIN_START_AMOUNT; i++) {
@@ -117,7 +117,7 @@ public class GoldModel extends GameUtils implements GameModel {
 	 */
 	private void addCoin() {
 		Position newCoinPos;
-		Dimension size = getGameboardSize();
+		Dimension size = GameUtils.getGameboardSize();
 		// Loop until a blank position is found and ...
 		do {
 			newCoinPos = new Position((int) (Math.random() * size.width),
@@ -125,7 +125,7 @@ public class GoldModel extends GameUtils implements GameModel {
 		} while (!isPositionEmpty(newCoinPos));
 
 		// ... add a new coin to the empty tile.
-		setGameboardState(this.gameboardState,newCoinPos, COIN_TILE);
+		GameUtils.setGameboardState(this.gameboardState,newCoinPos, COIN_TILE);
 		this.coins.add(newCoinPos);
 	}
 
@@ -185,7 +185,7 @@ public class GoldModel extends GameUtils implements GameModel {
 		updateDirection(lastKey);
 
 		// Erase the previous position.
-		setGameboardState(this.gameboardState, this.collectorPos, BLANK_TILE);
+		GameUtils.setGameboardState(this.gameboardState, this.collectorPos, BLANK_TILE);
 		// Change collector position.
 		this.collectorPos = getNextCollectorPos();
 
@@ -193,7 +193,7 @@ public class GoldModel extends GameUtils implements GameModel {
 			throw new GameOverException(this.score);
 		}
 		// Draw collector at new position.
-		setGameboardState(this.gameboardState, this.collectorPos, COLLECTOR_TILE);
+		GameUtils.setGameboardState(this.gameboardState, this.collectorPos, COLLECTOR_TILE);
 
 		// Remove the coin at the new collector position (if any)
 		if (this.coins.remove(this.collectorPos)) {
@@ -208,7 +208,7 @@ public class GoldModel extends GameUtils implements GameModel {
 		// Remove one of the coins
 		Position oldCoinPos = this.coins.get(0);
 		this.coins.remove(0);
-		setGameboardState(this.gameboardState, oldCoinPos, BLANK_TILE);
+		GameUtils.setGameboardState(this.gameboardState, oldCoinPos, BLANK_TILE);
 
 		// Add a new coin (simulating moving one coin)
 		addCoin();
@@ -221,24 +221,16 @@ public class GoldModel extends GameUtils implements GameModel {
 	 * @return <code>false</code> if the position is outside the playing field, <code>true</code> otherwise.
 	 */
 	private boolean isOutOfBounds(Position pos) {
-		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
-				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+		return pos.getX() < 0 || pos.getX() >= GameUtils.getGameboardSize().width
+				|| pos.getY() < 0 || pos.getY() >= GameUtils.getGameboardSize().height;
 	}
 
-	@Override
 	public GameTile getGameboardState(Position pos) {
 		return getGameboardState(pos.getX(), pos.getY());
 	}
 
-	@Override
 	public GameTile getGameboardState(int x, int y) {
 		return gameboardState[x][y];
-	}
-
-	@Override
-	public Dimension getGameboardSize() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

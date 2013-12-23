@@ -2,7 +2,7 @@ package orig2011.v3;
 
 import java.awt.Dimension;
 
-public abstract class GameUtils{
+public class GameUtils{
 
 	/**
 	 * Set the tile on a specified position in the gameboard.
@@ -34,7 +34,7 @@ public abstract class GameUtils{
 	/**
 	 * Returns the size of the gameboard.
 	 */
-	public Dimension getGameboardSize() {
+	public static Dimension getGameboardSize() {
 		return new Dimension(Constants.getGameSize().width, Constants.getGameSize().height);
 	}
 }
