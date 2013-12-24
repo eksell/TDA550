@@ -418,4 +418,10 @@ public class ReversiModel implements GameModel {
 		
 	}
 
+	@Override
+	public int getUpdateSpeed() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
 }

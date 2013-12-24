@@ -246,4 +246,9 @@ public class GoldModel implements GameModel {
 		
 	}
 
+	@Override
+	public int getUpdateSpeed() {
+		return 150;
+	}
+
 }
