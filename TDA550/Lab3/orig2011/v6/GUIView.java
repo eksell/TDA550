@@ -103,6 +103,8 @@ public class GUIView extends JPanel {
 						GUIView.this.gameChooser.getSelectedItem().toString();
 				GameModel gameModel =
 						GUIView.this.gameFactory.createGame(gameName);
+				
+				gameView.setModel(gameModel); //TODO NY
 
 				// Stop current game (if any) and start a new game with the
 				// new game model
