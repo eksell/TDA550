@@ -4,6 +4,7 @@ package orig2011.v6;
  * Thrown by GameModel.doCommand at game termination. The exception contains
  * information about how many points the player got.
  */
+@SuppressWarnings("serial")
 public class GameOverException extends Exception {
 	private final int score;
 

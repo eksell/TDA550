@@ -15,11 +15,13 @@ import javax.swing.JPanel;
  * a gui for choosing a new game. The list of games will be aquired from
  * a GameFactory.
  */
+@SuppressWarnings("serial")
 public class GUIView extends JPanel {
 	/** The "Start Game" button */
 	private final JButton startGameButton;
 
 	/** The chooser (also called drop-down menu) with names of different games */
+	@SuppressWarnings("rawtypes")
 	private final JComboBox gameChooser;
 
 	/** The game controller associated with the GameView */
@@ -38,7 +40,7 @@ public class GUIView extends JPanel {
 	 * Create a new GUIView. This will create a GameView and a GameController.
 	 * @param factory The factory to use for creating games.
 	 */
-	@SuppressWarnings("synthetic-access")
+	@SuppressWarnings({ "synthetic-access", "rawtypes", "unchecked" })
 	public GUIView(IGameFactory factory) {
 		// Create a new GameView
 		this.gameView = new GameView();

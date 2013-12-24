@@ -1,7 +1,6 @@
 package orig2011.v6;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -15,6 +14,7 @@ import javax.swing.JComponent;
  * A view Component suitable for inclusion in an AWT Frame. Paints itself by
  * consulting its model.
  */
+@SuppressWarnings("serial")
 public class GameView extends JComponent implements PropertyChangeListener {
 
 	/** Size of game model */
